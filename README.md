@@ -1,5 +1,7 @@
 # PradPay Demo
 
+Setting this up with an AI agent? Give it [Agent_Readme.md](Agent_Readme.md).
+
 A local, inspectable agent-to-agent commerce simulation. The Agent Interaction Studio at `/simulation` walks through a fictional buyer mission, merchant quote, exact human approval, simulated payment, recovery scenarios, narration, and evidence replay. Its default mode is scripted and **needs no Stripe account, database, model, or API key**.
 
 An optional `/local-sandbox` path runs Buyer and Merchant decisions against your own LM Studio server and exchanges a quote through the open A2A JSON-RPC protocol. A separate, opt-in button can submit **one Stripe test-mode payment** using Stripe's seller-side Shared Payment Token (SPT) test helper. That helper simulates token issuance; the Buyer agent does not issue a Stripe token. No real money or fulfillment is involved.

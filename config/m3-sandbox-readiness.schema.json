@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paymentlab.invalid/schemas/m3-sandbox-readiness.schema.json",
+  "title": "PaymentLab M3 Sandbox Readiness Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "PAYMENTLAB_ENVIRONMENT",
+    "PAYMENTLAB_DATABASE_MODE",
+    "PAYMENTLAB_CALLBACK_MODE",
+    "PAYMENTLAB_WORKER_MODE"
+  ],
+  "properties": {
+    "PAYMENTLAB_ENVIRONMENT": { "enum": ["local", "staging"] },
+    "PAYMENTLAB_DATABASE_MODE": { "enum": ["local", "hosted"] },
+    "PAYMENTLAB_CALLBACK_MODE": { "enum": ["disabled", "local-synthetic", "hosted"] },
+    "PAYMENTLAB_WORKER_MODE": { "enum": ["disabled", "local-synthetic", "hosted"] }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "PAYMENTLAB_ENVIRONMENT": { "const": "local" } } },
+      "then": {
+        "properties": {
+          "PAYMENTLAB_DATABASE_MODE": { "const": "local" },
+          "PAYMENTLAB_CALLBACK_MODE": { "enum": ["disabled", "local-synthetic"] },
+          "PAYMENTLAB_WORKER_MODE": { "enum": ["disabled", "local-synthetic"] }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "PAYMENTLAB_ENVIRONMENT": { "const": "staging" } } },
+      "then": {
+        "properties": {
+          "PAYMENTLAB_DATABASE_MODE": { "const": "hosted" },
+          "PAYMENTLAB_CALLBACK_MODE": { "const": "hosted" },
+          "PAYMENTLAB_WORKER_MODE": { "const": "hosted" }
+        }
+      }
+    }
+  ]
+}

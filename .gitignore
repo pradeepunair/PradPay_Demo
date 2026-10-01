@@ -1,0 +1,9 @@
+.next/
+node_modules/
+*.log
+*.tsbuildinfo
+.vercel
+.env*
+!.env.example
+.neon
+/.swc

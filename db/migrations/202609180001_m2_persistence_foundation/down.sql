@@ -1,0 +1,23 @@
+-- DISPOSABLE TEST DATABASES ONLY. Runtime rollback retains the additive schema.
+BEGIN;
+DROP FUNCTION IF EXISTS record_webhook_receipt(text,text,text,text,jsonb,timestamptz);
+DROP FUNCTION IF EXISTS claim_idempotency(text,text,text,text);
+DROP FUNCTION IF EXISTS append_domain_event(text,text,text,text,text,jsonb);
+DROP TABLE IF EXISTS admission_usage;
+DROP TABLE IF EXISTS reconciliation_jobs;
+DROP TRIGGER IF EXISTS idempotency_keys_immutable_identity ON idempotency_keys;
+DROP TABLE IF EXISTS idempotency_keys;
+DROP FUNCTION IF EXISTS reject_idempotency_identity_change();
+DROP TABLE IF EXISTS outbox_jobs;
+DROP TABLE IF EXISTS domain_events;
+DROP TABLE IF EXISTS webhook_receipts;
+DROP TABLE IF EXISTS mandate_usages;
+DROP TABLE IF EXISTS payment_attempts;
+DROP TABLE IF EXISTS payments;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS mandates;
+DROP TABLE IF EXISTS quotes;
+DROP TABLE IF EXISTS checkouts;
+DROP TABLE IF EXISTS runs;
+DROP TABLE IF EXISTS visitor_sessions;
+COMMIT;

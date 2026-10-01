@@ -1,0 +1,209 @@
+{
+  "schemaVersion": "1.2.0",
+  "source": "local_simulation_fixture",
+  "runId": "sim_run_atlas_northstar_v1",
+  "referenceTime": "2026-09-30T12:00:00.000Z",
+  "stepMs": 1000,
+  "fault": "buyer_decline",
+  "events": [
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_001",
+      "sequence": 1,
+      "occurredAt": "2026-09-30T12:00:00.000Z",
+      "eventClass": "buyer_action",
+      "type": "buyer.session_opened",
+      "actor": "Buyer",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": null,
+      "safePayload": {
+        "sessionId": "sim_session_01"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_002",
+      "sequence": 2,
+      "occurredAt": "2026-09-30T12:00:01.000Z",
+      "eventClass": "buyer_action",
+      "type": "buyer.mission_established",
+      "actor": "Buyer",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": "sim_evt_001",
+      "safePayload": {
+        "missionId": "sim_mission_01",
+        "category": "wireless_headphones",
+        "quantity": 1,
+        "batteryHoursMin": 30,
+        "deliveryDaysMax": 2,
+        "maxTotalMinor": 35000,
+        "currency": "USD"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_003",
+      "sequence": 3,
+      "occurredAt": "2026-09-30T12:00:02.000Z",
+      "eventClass": "buyer_action",
+      "type": "buyer.wallet_connected",
+      "actor": "Buyer",
+      "recipient": "Wallet",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": "sim_evt_002",
+      "safePayload": {
+        "walletReference": "sim_wallet_01"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_004",
+      "sequence": 4,
+      "occurredAt": "2026-09-30T12:00:03.000Z",
+      "eventClass": "buyer_action",
+      "type": "buyer.browse_authorized",
+      "actor": "Buyer",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": "sim_evt_003",
+      "safePayload": {
+        "missionId": "sim_mission_01"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_005",
+      "sequence": 5,
+      "occurredAt": "2026-09-30T12:00:04.000Z",
+      "eventClass": "agent_request",
+      "type": "agent.catalog_requested",
+      "actor": "Atlas",
+      "recipient": "Seller agent",
+      "requestId": "sim_req_catalog_01",
+      "responseTo": null,
+      "causeEventId": "sim_evt_004",
+      "safePayload": {
+        "missionId": "sim_mission_01"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_006",
+      "sequence": 6,
+      "occurredAt": "2026-09-30T12:00:05.000Z",
+      "eventClass": "seller_response",
+      "type": "seller.catalog_returned",
+      "actor": "Seller agent",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": "sim_req_catalog_01",
+      "causeEventId": "sim_evt_005",
+      "safePayload": {
+        "catalogVersion": 1,
+        "productCount": 6
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_007",
+      "sequence": 7,
+      "occurredAt": "2026-09-30T12:00:06.000Z",
+      "eventClass": "buyer_action",
+      "type": "buyer.product_selected",
+      "actor": "Buyer",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": "sim_evt_006",
+      "safePayload": {
+        "productId": "aurora-pro"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_008",
+      "sequence": 8,
+      "occurredAt": "2026-09-30T12:00:07.000Z",
+      "eventClass": "agent_request",
+      "type": "agent.quote_requested",
+      "actor": "Atlas",
+      "recipient": "Seller agent",
+      "requestId": "sim_req_quote_01",
+      "responseTo": null,
+      "causeEventId": "sim_evt_007",
+      "safePayload": {
+        "productId": "aurora-pro",
+        "quantity": 1
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_009",
+      "sequence": 9,
+      "occurredAt": "2026-09-30T12:00:08.000Z",
+      "eventClass": "seller_response",
+      "type": "seller.quote_returned",
+      "actor": "Seller agent",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": "sim_req_quote_01",
+      "causeEventId": "sim_evt_008",
+      "safePayload": {
+        "quoteId": "sim_quote_aurora_pro_01",
+        "productId": "aurora-pro",
+        "seller": "Northstar Audio",
+        "productMinor": 27900,
+        "discountMinor": 1000,
+        "shippingMinor": 1200,
+        "taxMinor": 2219,
+        "totalMinor": 30319,
+        "currency": "USD",
+        "reservationReference": "sim_reservation_aurora_pro_01",
+        "reservationStatus": "simulated"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_010",
+      "sequence": 10,
+      "occurredAt": "2026-09-30T12:00:09.000Z",
+      "eventClass": "buyer_action",
+      "type": "buyer.purchase_declined",
+      "actor": "Buyer",
+      "recipient": "Wallet",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": "sim_evt_009",
+      "safePayload": {
+        "quoteId": "sim_quote_aurora_pro_01",
+        "decision": "declined"
+      },
+      "evidenceRefs": []
+    }
+  ]
+}

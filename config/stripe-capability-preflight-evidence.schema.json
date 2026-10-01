@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paymentlab.invalid/schemas/stripe-capability-preflight-evidence.schema.json",
+  "title": "Local/Test-Only Read-Only Stripe Capability Preflight Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "capability", "candidateCommit", "status", "mode", "accountRef", "apiVersion", "requestCount", "paymentCount", "usdAmountMinor", "secretStore", "dispatch", "observedAtEpoch", "blockers"],
+  "properties": {
+    "schemaVersion": { "const": "m3.read-only-stripe-capability-preflight.v1" },
+    "capability": { "const": "stripe-capability-preflight" },
+    "candidateCommit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "status": { "enum": ["UNVERIFIED", "BLOCKED", "SUPPORTED", "UNSUPPORTED", "AMBIGUOUS"] },
+    "mode": { "const": "test" },
+    "accountRef": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "apiVersion": { "type": "string", "minLength": 1 },
+    "requestCount": { "type": "integer", "minimum": 0 },
+    "paymentCount": { "type": "integer", "minimum": 0 },
+    "usdAmountMinor": { "type": "integer", "minimum": 0 },
+    "secretStore": {
+      "type": "object", "additionalProperties": false,
+      "required": ["configured", "metadataRead", "valueAccessed"],
+      "properties": { "configured": { "type": "boolean" }, "metadataRead": { "type": "boolean" }, "valueAccessed": { "const": false } }
+    },
+    "dispatch": {
+      "type": "object", "additionalProperties": false,
+      "required": ["attempted", "transport"],
+      "properties": { "attempted": { "const": false }, "transport": { "const": "disabled" } }
+    },
+    "observedAtEpoch": { "type": "integer", "minimum": 0 },
+    "blockers": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+  }
+}

@@ -1,0 +1,391 @@
+{
+  "schemaVersion": "1.2.0",
+  "source": "local_simulation_fixture",
+  "runId": "sim_run_atlas_northstar_v1",
+  "referenceTime": "2026-09-30T12:00:00.000Z",
+  "stepMs": 1000,
+  "fault": "none",
+  "events": [
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_001",
+      "sequence": 1,
+      "occurredAt": "2026-09-30T12:00:00.000Z",
+      "eventClass": "buyer_action",
+      "type": "buyer.session_opened",
+      "actor": "Buyer",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": null,
+      "safePayload": {
+        "sessionId": "sim_session_01"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_002",
+      "sequence": 2,
+      "occurredAt": "2026-09-30T12:00:01.000Z",
+      "eventClass": "buyer_action",
+      "type": "buyer.mission_established",
+      "actor": "Buyer",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": "sim_evt_001",
+      "safePayload": {
+        "missionId": "sim_mission_01",
+        "category": "wireless_headphones",
+        "quantity": 1,
+        "batteryHoursMin": 30,
+        "deliveryDaysMax": 2,
+        "maxTotalMinor": 35000,
+        "currency": "USD"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_003",
+      "sequence": 3,
+      "occurredAt": "2026-09-30T12:00:02.000Z",
+      "eventClass": "buyer_action",
+      "type": "buyer.wallet_connected",
+      "actor": "Buyer",
+      "recipient": "Wallet",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": "sim_evt_002",
+      "safePayload": {
+        "walletReference": "sim_wallet_01"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_004",
+      "sequence": 4,
+      "occurredAt": "2026-09-30T12:00:03.000Z",
+      "eventClass": "buyer_action",
+      "type": "buyer.browse_authorized",
+      "actor": "Buyer",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": "sim_evt_003",
+      "safePayload": {
+        "missionId": "sim_mission_01"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_005",
+      "sequence": 5,
+      "occurredAt": "2026-09-30T12:00:04.000Z",
+      "eventClass": "agent_request",
+      "type": "agent.catalog_requested",
+      "actor": "Atlas",
+      "recipient": "Seller agent",
+      "requestId": "sim_req_catalog_01",
+      "responseTo": null,
+      "causeEventId": "sim_evt_004",
+      "safePayload": {
+        "missionId": "sim_mission_01"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_006",
+      "sequence": 6,
+      "occurredAt": "2026-09-30T12:00:05.000Z",
+      "eventClass": "seller_response",
+      "type": "seller.catalog_returned",
+      "actor": "Seller agent",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": "sim_req_catalog_01",
+      "causeEventId": "sim_evt_005",
+      "safePayload": {
+        "catalogVersion": 1,
+        "productCount": 6
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_007",
+      "sequence": 7,
+      "occurredAt": "2026-09-30T12:00:06.000Z",
+      "eventClass": "buyer_action",
+      "type": "buyer.product_selected",
+      "actor": "Buyer",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": "sim_evt_006",
+      "safePayload": {
+        "productId": "aurora-pro"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_008",
+      "sequence": 8,
+      "occurredAt": "2026-09-30T12:00:07.000Z",
+      "eventClass": "agent_request",
+      "type": "agent.quote_requested",
+      "actor": "Atlas",
+      "recipient": "Seller agent",
+      "requestId": "sim_req_quote_01",
+      "responseTo": null,
+      "causeEventId": "sim_evt_007",
+      "safePayload": {
+        "productId": "aurora-pro",
+        "quantity": 1
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_009",
+      "sequence": 9,
+      "occurredAt": "2026-09-30T12:00:08.000Z",
+      "eventClass": "seller_response",
+      "type": "seller.quote_returned",
+      "actor": "Seller agent",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": "sim_req_quote_01",
+      "causeEventId": "sim_evt_008",
+      "safePayload": {
+        "quoteId": "sim_quote_aurora_pro_01",
+        "productId": "aurora-pro",
+        "seller": "Northstar Audio",
+        "productMinor": 27900,
+        "discountMinor": 1000,
+        "shippingMinor": 1200,
+        "taxMinor": 2219,
+        "totalMinor": 30319,
+        "currency": "USD",
+        "reservationReference": "sim_reservation_aurora_pro_01",
+        "reservationStatus": "simulated"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_010",
+      "sequence": 10,
+      "occurredAt": "2026-09-30T12:00:09.000Z",
+      "eventClass": "buyer_action",
+      "type": "buyer.purchase_approved",
+      "actor": "Buyer",
+      "recipient": "Wallet",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": "sim_evt_009",
+      "safePayload": {
+        "approvalId": "sim_approval_01",
+        "quoteId": "sim_quote_aurora_pro_01",
+        "seller": "Northstar Audio",
+        "amountMinor": 30319,
+        "currency": "USD"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_011",
+      "sequence": 11,
+      "occurredAt": "2026-09-30T12:00:10.000Z",
+      "eventClass": "agent_request",
+      "type": "agent.token_requested",
+      "actor": "Atlas",
+      "recipient": "Wallet",
+      "requestId": "sim_req_token_01",
+      "responseTo": null,
+      "causeEventId": "sim_evt_010",
+      "safePayload": {
+        "approvalId": "sim_approval_01"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_012",
+      "sequence": 12,
+      "occurredAt": "2026-09-30T12:00:11.000Z",
+      "eventClass": "wallet_response",
+      "type": "wallet.token_issued",
+      "actor": "Wallet",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": "sim_req_token_01",
+      "causeEventId": "sim_evt_011",
+      "safePayload": {
+        "tokenReference": "sim_token_01",
+        "runId": "sim_run_atlas_northstar_v1",
+        "approvalId": "sim_approval_01",
+        "maxUses": 1,
+        "quoteId": "sim_quote_aurora_pro_01",
+        "quoteVersion": 1,
+        "quoteHash": "sim_hash_e9f200ba432570be",
+        "seller": "Northstar Audio",
+        "amountMinor": 30319,
+        "currency": "USD",
+        "issuedAt": "2026-09-30T12:00:11.000Z",
+        "expiresAt": "2026-09-30T12:01:11.000Z"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_013",
+      "sequence": 13,
+      "occurredAt": "2026-09-30T12:00:12.000Z",
+      "eventClass": "agent_request",
+      "type": "agent.checkout_requested",
+      "actor": "Atlas",
+      "recipient": "Seller backend",
+      "requestId": "sim_req_checkout_01",
+      "responseTo": null,
+      "causeEventId": "sim_evt_012",
+      "safePayload": {
+        "runId": "sim_run_atlas_northstar_v1",
+        "quoteId": "sim_quote_aurora_pro_01",
+        "quoteVersion": 1,
+        "quoteHash": "sim_hash_e9f200ba432570be",
+        "seller": "Northstar Audio",
+        "amountMinor": 30319,
+        "currency": "USD",
+        "tokenReference": "sim_token_01"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_014",
+      "sequence": 14,
+      "occurredAt": "2026-09-30T12:00:13.000Z",
+      "eventClass": "seller_response",
+      "type": "seller.attempt_reserved",
+      "actor": "Seller backend",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": "sim_req_checkout_01",
+      "causeEventId": "sim_evt_013",
+      "safePayload": {
+        "attemptId": "sim_attempt_01",
+        "orderId": "sim_order_01"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_015",
+      "sequence": 15,
+      "occurredAt": "2026-09-30T12:00:14.000Z",
+      "eventClass": "provider_request",
+      "type": "seller.payment_requested",
+      "actor": "Seller backend",
+      "recipient": "Payment simulator",
+      "requestId": "sim_req_provider_01",
+      "responseTo": null,
+      "causeEventId": "sim_evt_014",
+      "safePayload": {
+        "attemptId": "sim_attempt_01",
+        "amountMinor": 30319,
+        "currency": "USD"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_016",
+      "sequence": 16,
+      "occurredAt": "2026-09-30T12:00:15.000Z",
+      "eventClass": "provider_evidence",
+      "type": "provider.response_received",
+      "actor": "Payment simulator",
+      "recipient": "Seller backend",
+      "requestId": null,
+      "responseTo": "sim_req_provider_01",
+      "causeEventId": "sim_evt_015",
+      "safePayload": {
+        "attemptId": "sim_attempt_01",
+        "paymentReference": "sim_payment_01",
+        "status": "succeeded",
+        "amountMinor": 30319,
+        "currency": "USD"
+      },
+      "evidenceRefs": []
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_017",
+      "sequence": 17,
+      "occurredAt": "2026-09-30T12:00:16.000Z",
+      "eventClass": "provider_evidence",
+      "type": "provider.callback_verified",
+      "actor": "Payment simulator",
+      "recipient": "Seller backend",
+      "requestId": null,
+      "responseTo": null,
+      "causeEventId": "sim_evt_016",
+      "safePayload": {
+        "attemptId": "sim_attempt_01",
+        "paymentReference": "sim_payment_01",
+        "evidenceReference": "sim_evidence_01",
+        "status": "succeeded",
+        "amountMinor": 30319,
+        "currency": "USD"
+      },
+      "evidenceRefs": [
+        "sim_evidence_01"
+      ]
+    },
+    {
+      "schemaVersion": "1.2.0",
+      "runId": "sim_run_atlas_northstar_v1",
+      "eventId": "sim_evt_018",
+      "sequence": 18,
+      "occurredAt": "2026-09-30T12:00:17.000Z",
+      "eventClass": "seller_response",
+      "type": "seller.order_confirmed",
+      "actor": "Seller backend",
+      "recipient": "Atlas",
+      "requestId": null,
+      "responseTo": "sim_req_checkout_01",
+      "causeEventId": "sim_evt_017",
+      "safePayload": {
+        "orderId": "sim_order_01",
+        "evidenceReference": "sim_evidence_01"
+      },
+      "evidenceRefs": [
+        "sim_evidence_01"
+      ]
+    }
+  ]
+}

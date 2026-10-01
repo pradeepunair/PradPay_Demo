@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "synthetic-success-v1",
+  "source": "synthetic_development_fixture",
+  "mode": "guided_replay",
+  "title": "Successful delegated sale",
+  "description": "A deterministic synthetic fixture. No agent or payment API is called.",
+  "referenceTime": "2026-09-07T20:00:00.000Z",
+  "durationMs": 30000,
+  "catalog": [
+    { "id": "aurora-pro", "name": "Aurora Pro Wireless", "priceMinor": 27900, "batteryHours": 42, "deliveryDays": 2, "stock": 8 },
+    { "id": "harbor-studio", "name": "Harbor Studio ANC", "priceMinor": 28900, "batteryHours": 38, "deliveryDays": 2, "stock": 5 },
+    { "id": "summit-max", "name": "Summit Max", "priceMinor": 32900, "batteryHours": 50, "deliveryDays": 2, "stock": 4 },
+    { "id": "metro-lite", "name": "Metro Lite", "priceMinor": 19900, "batteryHours": 18, "deliveryDays": 2, "stock": 12 },
+    { "id": "cedar-classic", "name": "Cedar Classic", "priceMinor": 24900, "batteryHours": 35, "deliveryDays": 7, "stock": 6 },
+    { "id": "signal-one", "name": "Signal One", "priceMinor": 25900, "batteryHours": 36, "deliveryDays": 3, "stock": 0 }
+  ],
+  "events": [
+    {
+      "eventId": "evt_demo_001",
+      "sequence": 1,
+      "type": "run.started",
+      "actor": "system",
+      "occurredAt": "2026-09-07T20:00:00.000Z",
+      "summary": "The synthetic replay started with a fixed reference clock.",
+      "explanation": "A fixed clock makes delivery dates and playback deterministic.",
+      "evidenceRefs": ["fixture:run-config-v1"],
+      "patch": { "shared": { "runStatus": "running", "phase": "Mission" } }
+    },
+    {
+      "eventId": "evt_demo_002",
+      "sequence": 2,
+      "type": "mission.confirmed",
+      "actor": "buyer",
+      "occurredAt": "2026-09-07T20:00:02.000Z",
+      "summary": "The buyer confirmed over-ear headphones under $315, delivered by Friday.",
+      "explanation": "The normalized requirements are the selection boundary, not payment authority.",
+      "evidenceRefs": ["fixture:mission-v1"],
+      "patch": {
+        "shared": { "phase": "Mission" },
+        "buyer": {
+          "mission": "Choose over-ear noise-canceling headphones under $315, with at least 30 hours of battery life and delivery by Friday.",
+          "requirements": ["Over-ear ANC", "At least 30-hour battery", "All-in total at or below $315", "Delivery by Friday"]
+        },
+        "merchant": { "request": "One pair of over-ear ANC headphones; synthetic US delivery profile." }
+      }
+    },
+    {
+      "eventId": "evt_demo_003",
+      "sequence": 3,
+      "type": "candidate.evaluated",
+      "actor": "buyer_agent",
+      "occurredAt": "2026-09-07T20:00:06.000Z",
+      "summary": "Aurora Pro Wireless best satisfied the confirmed requirements.",
+      "explanation": "Alternatives were rejected using catalog price, battery, delivery, and stock facts.",
+      "evidenceRefs": ["fixture:catalog-v1", "fixture:comparison-v1"],
+      "patch": {
+        "shared": { "phase": "Compare" },
+        "buyer": { "selectedProduct": "Aurora Pro Wireless", "selectionReason": "42-hour battery, in stock, two-day delivery, and within the all-in budget after the eligible offer." },
+        "merchant": { "stock": "8 units available in this isolated synthetic run" }
+      }
+    },
+    {
+      "eventId": "evt_demo_004",
+      "sequence": 4,
+      "type": "quote.created",
+      "actor": "merchant_service",
+      "occurredAt": "2026-09-07T20:00:10.000Z",
+      "summary": "The merchant produced an authoritative $303.19 quote.",
+      "explanation": "The quote uses integer cents, an illustrative 8.25% tax assumption, and a disclosed processor-fee assumption.",
+      "evidenceRefs": ["fixture:quote-v1"],
+      "patch": {
+        "shared": { "phase": "Quote", "totalMinor": 30319 },
+        "buyer": { "quote": "$279.00 − $10.00 + $12.00 shipping + $22.19 illustrative tax = $303.19" },
+        "merchant": { "quote": "$303.19 total; reservation expires in 10 minutes", "contributionMinor": 6991, "risk": "Synthetic rule checks passed" },
+        "psp": { "feeAssumptionMinor": 909 }
+      }
+    },
+    {
+      "eventId": "evt_demo_005",
+      "sequence": 5,
+      "type": "mandate.granted",
+      "actor": "visitor",
+      "occurredAt": "2026-09-07T20:00:15.000Z",
+      "summary": "The visitor granted one-purchase authority for the exact $303.19 cart.",
+      "explanation": "The synthetic authority binds merchant, cart version, amount, currency, delivery option, and expiry.",
+      "evidenceRefs": ["fixture:mandate-v1"],
+      "patch": { "shared": { "phase": "Permission" }, "buyer": { "authority": "Exact cart approved · one purchase · expires in 15 minutes" } }
+    },
+    {
+      "eventId": "evt_demo_006",
+      "sequence": 6,
+      "type": "checkout.ready",
+      "actor": "merchant_service",
+      "occurredAt": "2026-09-07T20:00:18.000Z",
+      "summary": "Checkout was ready and the synthetic inventory reservation remained valid.",
+      "explanation": "No provider request has occurred at this cursor.",
+      "evidenceRefs": ["fixture:checkout-v1"],
+      "patch": { "shared": { "phase": "Payment", "paymentStatus": "not_submitted" } }
+    },
+    {
+      "eventId": "evt_demo_007",
+      "sequence": 7,
+      "type": "payment.submitted",
+      "actor": "payment_service",
+      "occurredAt": "2026-09-07T20:00:21.000Z",
+      "summary": "The fixture records one synthetic payment submission.",
+      "explanation": "This is synthetic evidence only; Guided Replay never calls Stripe.",
+      "evidenceRefs": ["fixture:payment-request-v1"],
+      "patch": { "shared": { "paymentStatus": "processing" }, "psp": { "providerReference": "pi_demo_synthetic_001", "state": "Processing (synthetic fixture)" } }
+    },
+    {
+      "eventId": "evt_demo_008",
+      "sequence": 8,
+      "type": "payment.provider_response_received",
+      "actor": "payment_service",
+      "occurredAt": "2026-09-07T20:00:24.000Z",
+      "summary": "The fixture reports that the synthetic payment succeeded.",
+      "explanation": "A provider response is distinct from durable callback confirmation.",
+      "evidenceRefs": ["fixture:payment-response-v1"],
+      "patch": { "shared": { "paymentStatus": "succeeded" }, "psp": { "state": "Succeeded (synthetic fixture)" } }
+    },
+    {
+      "eventId": "evt_demo_009",
+      "sequence": 9,
+      "type": "webhook.verified",
+      "actor": "webhook_service",
+      "occurredAt": "2026-09-07T20:00:27.000Z",
+      "summary": "A synthetic verified-callback fact was applied once.",
+      "explanation": "This event demonstrates the desired evidence boundary; it is not a real Stripe callback.",
+      "evidenceRefs": ["fixture:webhook-v1"],
+      "patch": { "psp": { "webhook": "Verified and applied once (synthetic fixture)" } }
+    },
+    {
+      "eventId": "evt_demo_010",
+      "sequence": 10,
+      "type": "order.confirmed",
+      "actor": "order_service",
+      "occurredAt": "2026-09-07T20:00:30.000Z",
+      "summary": "The synthetic order was confirmed; fulfillment was not performed.",
+      "explanation": "The replay does not claim settlement, shipment, or real fulfillment.",
+      "evidenceRefs": ["fixture:order-v1"],
+      "patch": {
+        "shared": { "phase": "Confirmation", "runStatus": "succeeded", "orderStatus": "confirmed" },
+        "buyer": { "receipt": "Synthetic order ord_demo_001 · $303.19 · fulfillment not performed" }
+      }
+    }
+  ]
+}

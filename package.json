@@ -1,0 +1,38 @@
+{
+  "name": "pradpay-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 3000",
+    "build": "next build",
+    "test": "npm run demo:test",
+    "demo:test": "node --test test/*.test.mjs",
+    "a2a:smoke": "node scripts/a2a-local-smoke.mjs"
+  },
+  "dependencies": {
+    "@a2a-js/sdk": "1.0.1",
+    "next": "16.3.4",
+    "pg": "8.23.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "stripe": "22.6.1",
+    "workflow": "4.8.9"
+  },
+  "overrides": {
+    "@workflow/core": {
+      "nanoid": "5.1.16"
+    },
+    "@workflow/world-local": {
+      "undici": "7.30.0"
+    },
+    "@workflow/world-vercel": {
+      "undici": "7.30.0"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "26.5.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "typescript": "7.0.2"
+  }
+}
